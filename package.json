@@ -1,0 +1,13 @@
+{
+  "name": "querylens-analyzer", "version": "1.0.0", "private": true, "type": "module",
+  "scripts": {
+    "build:cpp": "mkdir -p build && g++ -std=c++17 -O2 -Wall -Wextra -pedantic cpp/analyzer.cpp -o build/analyzer",
+    "dev": "npm run build:cpp && concurrently -k -n api,web \"node server/index.js\" \"vite --host 0.0.0.0\"",
+    "build": "npm run build:cpp && vite build",
+    "start": "npm run build:cpp && node server/index.js --production",
+    "test": "npm run build:cpp && node --test tests/*.test.js",
+    "console": "npm run build:cpp && ./build/analyzer"
+  },
+  "dependencies": {"express": "^5.1.0", "react": "^19.1.0", "react-dom": "^19.1.0", "lucide-react": "^0.468.0"},
+  "devDependencies": {"vite": "^6.1.0", "@vitejs/plugin-react": "^4.3.4", "concurrently": "^9.1.2"}
+}
